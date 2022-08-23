@@ -20,10 +20,10 @@ const Cart = (): JSX.Element => {
   const { cart, removeProduct, updateProductAmount } = useCart();
   
 
-  const cartFormatted = cart;
-  cartFormatted.forEach(product => {
-    product.priceFormatted = formatPrice(product.price);
-  });
+  const cartFormatted = cart.map(product => ({
+    ...product,
+    priceFormatted: formatPrice(product.price),
+  }));
   const total =
     formatPrice(
       cart.reduce((sumTotal, product) => {
